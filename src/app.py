@@ -30,6 +30,7 @@ def PostUserAvatar():
 
 @app.route("/Zimg/<uuid>", methods=["GET"]) # Not implemented!
 def GetUserAvatar(uuid):
+    print(uuid)
     result = getUserImage(uuid)
     if result:
         file, ext = result
@@ -111,7 +112,7 @@ def GetUserAvatar():
 def PostImage():
     
     # Accepts: id_ - required, type - POST|IMG|BG, postId (Only if type === POST)
- 
+
     data = request.json
     if "id" in data and "type" in data:
         if not "content" in data:

@@ -1,5 +1,5 @@
 
-from .models import Response
+from models import Response
 from base64 import b64decode
 from pathlib import Path
 from CDN import CDN
@@ -14,11 +14,11 @@ TYPES = [
 IMG = 0
 BG = 1
 
-def makeResponse(code: int = 200, data: any = "No data") -> None: return dict(Response(code, data))
+def makeResponse(code: int = 200, data: any = "No data") -> None: return Response(code, data).make()
 
 def Unpack(IMime, TypeIndex: int) -> tuple:
     """ Unpacking the mime image. """
-    
+
     Extention = IMime.split(";")[0].split(":")[1].split("/")[1]
     Bytes = b64decode(IMime.split(";")[1].split(",")[1].encode())
     FileName = TYPES[TypeIndex]
@@ -52,9 +52,10 @@ def SaveUserImage(data: dict, update = False) -> Response:
 def getUserImage(uuid: int | str) -> tuple[str, str] | bool:
     UFolder = Path(CDN) / str(uuid)
     ConfigPath = UFolder / "config.json"
+
     if ConfigPath.exists():
         conf = loadConfig(ConfigPath)
-
+        print(conf)
         Extention = conf["img"].split(".")[1] # get img ext.
         FilePath = UFolder / conf["img"]
         if FilePath.exists():
