@@ -30,6 +30,7 @@ def SaveUserImage(data: dict, update = False) -> Response:
     if isinstance(ID, int): ID = str(ID)
     Upath = Path(CDN) / ID
     ConfigPath = Path(CDN) / ID / "config.json"
+    Config = {}
 
     if not Upath.exists(): Upath.mkdir()
 
@@ -42,7 +43,7 @@ def SaveUserImage(data: dict, update = False) -> Response:
     Bytes, FName = Unpack(MIME, IMG)
     Config["img"] = FName
     ImagePath = Upath / FName
-    with open(ImagePath, "w+") as fp: 
+    with open(ImagePath, "wb") as fp: 
         fp.write(Bytes)
 
     overWriteConfig(ConfigPath, Config)
@@ -63,7 +64,7 @@ def getUserImage(uuid: int | str) -> tuple[str, str] | bool:
 
     return False
 
-def SaveUserBackground(data: dict) -> None:
+def SaveUserBackground(data: dict, update = False) -> None:
     MIME, ID = data["mime"], data["id"] 
     if isinstance(ID, int): ID = str(ID)
     Upath = Path(CDN) / ID
@@ -71,6 +72,8 @@ def SaveUserBackground(data: dict) -> None:
 
     if not Upath.exists(): Upath.mkdir()
 
+    Config = {}
+    
     if ConfigPath.exists() and not update:
         Config = loadConfig(ConfigPath)
     
@@ -81,7 +84,7 @@ def SaveUserBackground(data: dict) -> None:
     Config["bg"] = FName
     ImagePath = Upath / FName
 
-    with open(ImagePath, "w+") as fp:
+    with open(ImagePath, "wb") as fp:
         fp.write(Bytes)
 
     overWriteConfig(ConfigPath, Config)

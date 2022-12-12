@@ -4,3 +4,4 @@
 venv
 # images
 /src/cdn
+/src/scripts/img

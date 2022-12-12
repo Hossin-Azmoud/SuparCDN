@@ -1,3 +1,5 @@
+
+
 # TODO GetUserAvatar(uuid: int) -> imgBytes           
 # TODO GetUserBackground(uuid: int) -> imgBytes          
 # TODO GetUserPostImgs(uuid: int, postId: int) -> imgBytes[]         
@@ -22,7 +24,8 @@ app = Flask(__name__)
 def PostUserAvatar():
     data = request.json
     if "id" in data and "mime" in data:
-        SaveUserImage(data)
+        result = SaveUserImage(data)
+        return result
 
     return makeResponse(400, "could not find id or mime in request form data! please recheck")
 
@@ -42,7 +45,8 @@ def GetUserAvatar(uuid):
 def PostUserBackground():
     data = request.json
     if "id" in data and "mime" in data:
-        SaveUserBackground(data)
+        result = SaveUserBackground(data)
+        return result
 
     return makeResponse(400, "could not find id or mime in request form data! please recheck")
 
