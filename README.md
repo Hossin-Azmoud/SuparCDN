@@ -1,6 +1,21 @@
 # an image cdn for post images, user avatar images, background images.
 
+## TODO
+
+```bash
+	$ [] TODO GetUserAvatar(uuid: int) -> imgBytes           
+	$ [] TODO GetUserBackground(uuid: int) -> imgBytes          
+	$ [] TODO GetUserPostImgs(uuid: int, postId: int) -> imgBytes[]         
+	$ [] TODO PostUserAvatar(Mime: img, uuid: int) -> result          
+	$ [] TODO PostUserBackground(Mime: img, uuid: int) -> result
+	$ [] TODO UpdateUserAvatar(uuid: int, NewMime: img) -> imgBytes         
+	$ [] TODO UpdateUserBackground(uuid: int, NewMime: img) -> imgBytes             
+	$ [] TODO PostUserPostImgs(Mimes: img[] | img, uuid, postId: int) -> result
+	$ [] TOTAL TODOS: 8 (0/8). 
+```
+
 ## Hierarchy
+
 ```bash
     - cdn
 	+- <UID>
@@ -12,12 +27,5 @@
 ```
 
 ## routes
-
-- `/Zimg/get` get request with followin form queries. id (Required), type (POST, img, bg), postID (if type == POST.), key.
-
-- `/Zimg/add` adds an image with these parameters, id (Required), type, postID, key.
-
-- `/Zimg/update` updates a user entry, bg or img.
-
-- `/Zimg/Del` deletes an image.
+NOTE: Will be added when done with the todos above.
 

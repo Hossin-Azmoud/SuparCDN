@@ -1,55 +1,67 @@
+# TODO GetUserAvatar(uuid: int) -> imgBytes           
+# TODO GetUserBackground(uuid: int) -> imgBytes          
+# TODO GetUserPostImgs(uuid: int, postId: int) -> imgBytes[]         
+# TODO PostUserAvatar(Mime: img, uuid: int) -> result          
+# TODO PostUserBackground(Mime: img, uuid: int) -> result
+# TODO UpdateUserAvatar(uuid: int, NewMime: img) -> imgBytes         
+# TODO UpdateUserBackground(uuid: int, NewMime: img) -> imgBytes             
+# TODO PostUserPostImgs(Mimes: img[] | img, uuid, postId: int) -> result
+# TOTAL TODOS: 8 (0/8). 
+
+
 from flask import Flask, request
-from Enums import IType
+from Enums import IType, makeResponse
 from json import loads
-from dataclasses import dataclass
+
 app = Flask(__name__)
 
-"""
-    IMG: 0
-    BG: 1
-"""
+@app.route("/img/<uuid>", methods=[]) # Not implemented!
+def GetUserAvatar(uuid):
+
+    return f"Not implemented, but you have requested img for {uuid}"
+
+@app.route("/bg/<uuid>", methods=[]) # Not implemented!
+def GetUserBackground():
+
+    return f"Not implemented, but you have requested bg for {uuid}"
 
 
 
-@dataclass
-class Response:
-    code: int
-    data: any
 
-    def __dict__(self) -> dict:
-        return {
-            "code": self.code,
-            "data": self.data
-        }
+@app.route("/post/<uuid>/<postID>", methods=[]) # Not implemented!
+def GetUserPostImgs(uuid, postID):
 
-    def Json(self) -> str:
-        return dumps(self.__dict__)
-    
-def makeResponse(code: int = 200, data: any = "No data") -> None: return dict(Response(code, data))
+    return f"Not implemented, but you have requested post ID: {postID} for UUID: {uuid}"
 
-def GetPostImages(uuid: int | str, post_id int | str) -> bytes:
-    """ get every image in this path: {cdn}/{uuid}/Posts/{post_id}/*.* """
-    pass
+@app.route("/Zimg/addAvatar", methods=[]) # Not implemented!
+def PostUserAvatar():
 
-def GetImg(uuid: int | str, T: int):
-    
-    if isinstance(T, str): T = int(T)
-    # [ Get the image from {cdn}/{uuid}/{IType.STR[T]}.ext ]
-    pass
+    return "Not implemented"
 
-def addImg(uuid: int | str, T: int):
-    if isinstance(T, str): T = int(T)
-    # TODO Get the extention from mime.
-    """
-    
-    """
-    # TODO Get the bytes from the mime.
-    # TODO Dump the info to a file ({Ext: *}).
-    # TODO Dump the img to its proper place {cdn}/{uuid}/{IType.STR[T]}.ext 
-    
+
+@app.route("/Zimg/", methods=[]) # Not implemented!
+def PostUserBackground():
+
+    return "Not implemented"
+
+@app.route("/Zimg/", methods=[]) # Not implemented!
+def UpdateUserAvatar():
+
+    return "Not implemented"
+
+@app.route("/Zimg/", methods=[]) # Not implemented!
+def UpdateUserBackground():
+
+    return "Not implemented"
+
+@app.route("/Zimg/", methods=[]) # Not implemented!
+def PostUserPostImgs():
+
+    return "Not implemented"
+
 
 @app.route("/Zimg/get", methods=["GET"])
-def GetImage():
+def GetUserAvatar():
     """
     Get an image or multiple images. 
     """
@@ -60,8 +72,8 @@ def GetImage():
         if "PostID" in Data:
             return GetPostImages(id_, Data["PostID"])
         else:
+            pass
             
-        
     return makeResponse(404, "Image could not be found.")
 
 @app.route("/Zimg/add", methods=["POST"])
@@ -96,3 +108,4 @@ def delete():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
