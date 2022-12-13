@@ -5,3 +5,5 @@ venv
 # images
 /src/cdn
 /src/scripts/img
+# python cache
+__pycache__
