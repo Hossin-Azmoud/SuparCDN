@@ -2,15 +2,17 @@
 from requests import post
 from base64 import b64encode
 
-api = "http://localhost:5000"
+api = "http://localhost:8500"
+
+# Endpoints.
 addIMG = f"{api}/Zimg/addAvatar"
 addBG = f"{api}/Zimg/addbg"
+addPOST = f"{api}/Zimg/NewPostImg"
 
 def MakeMime(fp):
     ext = fp.name.split("/")[-1].split(".")[1]
     print(ext)
     enc = b64encode(fp.read()).decode()
-
     return f"data:image/{ext};base64,{enc}"
 
 def addAvatar(uuid: int | str, Mime: str) -> dict:
@@ -30,6 +32,14 @@ def addbg(uuid: int | str, Mime: str) -> dict:
 
     return res.json()
 
+def addPost(uuid, Mime, postid=1):
+    res = post(addPOST, json={
+        "id": uuid,
+        "mime": Mime,
+        "postID": postid
+    })
+
+    return res.json()
 
 
 def main():
@@ -43,7 +53,9 @@ def main():
         print("Sending..")
         res = addAvatar(uuid, mime)
         print(res)
-
+        res = addbg(uuid, mime)
+        print(res)
+        
 if __name__ == "__main__":
     main()
 
