@@ -51,10 +51,9 @@ def main():
         print("Converting..")
         mime = MakeMime(fp)
         print("Sending..")
-        res = addAvatar(uuid, mime)
-        print(res)
-        res = addbg(uuid, mime)
-        print(res)
+        response = addAvatar(uuid, mime)
+        if response["code"] == 200:
+            print(response["data"]["url"])
         
 if __name__ == "__main__":
     main()
