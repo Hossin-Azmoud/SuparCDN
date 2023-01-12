@@ -16,10 +16,11 @@
 	$ [*] TODO PostUserAvatar(Mime: img, uuid: int) -> result          
 	$ [*] TODO PostUserBackground(Mime: img, uuid: int) -> result
 	$ [*] TODO PostUserPostImgs(Mimes: img[] | img, uuid, postId: int) -> result
-	$ [] TODO UpdateUserAvatar(uuid: int, NewMime: img) -> imgBytes         
-	$ [] TODO UpdateUserBackground(uuid: int, NewMime: img) -> imgBytes             
-	$ [] TOTAL TODOS: 8 (6/8). 
-
+	$ [*] TODO UpdateUserAvatar(uuid: int, NewMime: img) -> imgBytes         
+	$ [*] TODO UpdateUserBackground(uuid: int, NewMime: img) -> imgBytes             
+	$ [] TODO PostVid(uuid: int, NewMime: video, post_id: int) -> imgBytes             
+	$ [] TODO GetPostVid(uuid: int, NewMime: video, post_id: int) -> imgBytes             
+	
 ```
 ## Tested
 
@@ -30,10 +31,9 @@
 	$ [*] TODO GetUserPostImgs(uuid: int, postId: int) -> imgBytes[]         
 	$ [*] TODO PostUserAvatar(Mime: img, uuid: int) -> result          
 	$ [*] TODO PostUserBackground(Mime: img, uuid: int) -> result
-	$ [] TODO UpdateUserAvatar(uuid: int, NewMime: img) -> imgBytes         
-	$ [] TODO UpdateUserBackground(uuid: int, NewMime: img) -> imgBytes             
+	$ [*] TODO UpdateUserAvatar(uuid: int, NewMime: img) -> imgBytes         
+	$ [*] TODO UpdateUserBackground(uuid: int, NewMime: img) -> imgBytes             
 	$ [*] TODO PostUserPostImgs(Mimes: img[] | img, uuid, postId: int) -> result
-	$ [] TOTAL TODOS: 8 (6/8). 
 
 ```
 
@@ -149,3 +149,6 @@ NOTE: Will be added when done with the todos above.
 
 for fun lol..
 and also because I need a cdn for a project m working on. it is a simple social media app.
+
+
+
